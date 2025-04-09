@@ -1,0 +1,14 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Admin - Feedbacks</title>
+</head>
+<body>
+    <h1>Submitted Feedbacks</h1>
+    <ul>
+        {% for fb in feedbacks %}
+            <li><strong>{{ fb[1] }}</strong> ({{ fb[2] }}): {{ fb[3] }}</li>
+        {% endfor %}
+    </ul>
+</body>
+</html>
