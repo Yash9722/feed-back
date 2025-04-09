@@ -1,0 +1,34 @@
+version: 0.0
+os: linux
+files:
+  - source: /
+    destination: /home/ubuntu
+    overwrite: yes
+
+permissions:
+  - object: /home/ubuntu
+    pattern: "**"
+    owner: ubuntu
+    group: ubuntu
+    mode: 755
+    type:
+      - file
+      - directory
+
+hooks:
+  AfterInstall:
+    - location: Scripts/instance_os_dependencies.sh
+      timeout: 300
+      runas: root
+    - location: Scripts/python_dependencies.sh
+      timeout: 300
+      runas: ubuntu
+    - location: Scripts/gunicorn.service
+      timeout: 300
+      runas: root
+    - location: Scripts/nginx_app
+      timeout: 300
+      runas: root
+    - location: Scripts/start_app.sh
+      timeout: 300
+      runas: ubuntu
